@@ -64,13 +64,20 @@
                                             {{-- Hapus dark:text-emerald-400 dan dark:text-red-400 --}}
                                             {{ number_format($reward->points_required, 0, ',', '.') }} Poin
                                         </p>
-                                        @if ($patientPoints >= $reward->points_required && (is_null($reward->quantity_available) || $reward->quantity_available > 0) )
-                                            <p class="text-xs text-green-600 mt-1">Anda dapat menukarkan reward ini!</p> {{-- Hapus dark:text-green-400 --}}
-                                            <p class="text-xs text-gray-500 mt-1">Hubungi staf klinik untuk proses penukaran.</p> {{-- Hapus dark:text-gray-400 --}}
+                                       @if ($patientPoints >= $reward->points_required && (is_null($reward->quantity_available) || $reward->quantity_available > 0) )
+                                            <p class="text-xs text-green-600 mt-1">Anda dapat menukarkan reward ini!</p>
+                                            {{-- AWAL TOMBOL/FORM TUKAR POIN OLEH PASIEN --}}
+                                            <form method="POST" action="{{ route('patient.loyalty.redeem', $reward->id) }}" class="mt-3" onsubmit="return confirm('Anda yakin ingin menukarkan {{ number_format($reward->points_required, 0, ',', '.') }} poin Anda dengan {{ $reward->name }}?')">
+                                                @csrf
+                                                <button type="submit" class="w-full inline-flex items-center justify-center px-4 py-2 bg-emerald-600 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-emerald-700 active:bg-emerald-800 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition ease-in-out duration-150">
+                                                    Tukarkan Poin Ini
+                                                </button>
+                                            </form>
+                                            {{-- AKHIR TOMBOL/FORM TUKAR POIN OLEH PASIEN --}}
                                         @elseif (!is_null($reward->quantity_available) && $reward->quantity_available <= 0)
-                                             <p class="text-xs text-red-500 mt-1">Stok reward ini habis.</p> {{-- Hapus dark:text-red-400 --}}
+                                             <p class="text-xs text-red-500 mt-1">Stok reward ini habis.</p>
                                         @else
-                                            <p class="text-xs text-red-500 mt-1">Poin Anda belum cukup.</p> {{-- Hapus dark:text-red-400 --}}
+                                            <p class="text-xs text-red-500 mt-1">Poin Anda belum cukup.</p>
                                         @endif
                                     </div>
                                 </div>

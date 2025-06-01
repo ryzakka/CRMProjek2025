@@ -25,10 +25,6 @@
                 <div class="p-6 sm:p-8 text-gray-900">
                     <div class="mb-6 flex flex-col sm:flex-row justify-between items-start sm:items-center">
                         <h3 class="text-2xl font-semibold text-emerald-700 mb-4 sm:mb-0">Daftar Semua Reward</h3>
-                        {{-- Tombol Tambah Reward Baru --}}
-                        {{-- Rute 'rewards.create' sudah ada dari Route::resource. 
-                             Fungsionalitas create di RewardController belum kita implementasikan.
-                             Kita bisa tampilkan tombolnya sekarang. --}}
                         <a href="{{ route('rewards.create') }}" class="inline-flex items-center px-6 py-3 bg-emerald-600 border border-transparent rounded-lg font-semibold text-sm text-white uppercase tracking-widest hover:bg-emerald-500 active:bg-emerald-700 focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2 transition ease-in-out duration-150 shadow-md hover:shadow-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5 me-2">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -71,9 +67,9 @@
                                 @forelse ($rewards as $reward)
                                     <tr>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                                            {{-- <a href="{{ route('rewards.show', $reward->id) }}" class="text-emerald-600 hover:text-emerald-800 hover:underline"> --}}
+                                            <a href="{{ route('rewards.show', $reward->id) }}" class="text-emerald-600 hover:text-emerald-800 hover:underline">
                                                 {{ $reward->name }}
-                                            {{-- </a> --}}
+                                            </a>
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">
                                             {{ number_format($reward->points_required, 0, ',', '.') }} Poin
@@ -108,8 +104,6 @@
                                             {{ $reward->valid_until ? $reward->valid_until->isoFormat('D MMM YY') : 'Selamanya' }}
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium space-x-2">
-                                            {{-- Tautan aksi untuk CRUD Rewards oleh Staf --}}
-                                            {{-- <a href="{{ route('rewards.show', $reward->id) }}" class="text-blue-600 hover:text-blue-800 hover:underline">Detail</a> --}}
                                             <a href="{{ route('rewards.edit', $reward->id) }}" class="text-emerald-600 hover:text-emerald-800 hover:underline">Edit</a>
                                             <form method="POST" action="{{ route('rewards.destroy', $reward->id) }}" class="inline-block" onsubmit="return confirm('Anda yakin ingin menghapus reward \'{{ $reward->name }}\'?');">
                                                 @csrf
@@ -136,5 +130,4 @@
                 </div>
             </div>
         </div>
-    </div>
-</x-app-layout>
+    </x-app-layout>

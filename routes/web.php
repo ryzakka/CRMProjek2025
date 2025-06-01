@@ -86,6 +86,7 @@ Route::middleware('auth')->group(function () {
         Route::get('doctors', [PatientDoctorController::class, 'index'])->name('doctors.index');
         Route::get('my-appointments', [PatientAppointmentController::class, 'index'])->name('appointments.index');
         Route::get('my-loyalty-history', [PatientLoyaltyController::class, 'transactionHistory'])->name('loyalty.history');
+        Route::post('my-loyalty/redeem/{reward}', [PatientLoyaltyController::class, 'redeemReward'])->name('loyalty.redeem');
     });
 });
 

@@ -4,14 +4,11 @@ import Alpine from 'alpinejs';
 
 window.Alpine = Alpine;
 
-// AWAL KODE UNTUK MEMAKSA LIGHT MODE
-// Hapus paksa kelas 'dark' dari elemen <html> dan hapus preferensi tema dari localStorage
-// Force light mode and remove any stored theme preference
+// KODE UNTUK MEMAKSA LIGHT MODE (dari sebelumnya)
 if (document.documentElement.classList.contains('dark')) {
     document.documentElement.classList.remove('dark');
 }
 localStorage.removeItem('theme');
-document.documentElement.style.setProperty('color-scheme', 'light');ocument.documentElement.style.setProperty('color-scheme', 'light'); // Tambahan untuk preferensi browser
-// AKHIR KODE UNTUK MEMAKSA LIGHT MODE
+document.documentElement.style.setProperty('color-scheme', 'light');
 
-Alpine.start();
+Alpine.start(); // <-- INISIALISASI ALPINE.JS
